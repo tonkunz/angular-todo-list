@@ -1,7 +1,8 @@
 <h1>{{ title }}</h1>
 <ul>
   <li *ngFor="let todo of todos">{{ todo.title }} -
-    <button>Concluir</button> |
-    <button>X</button>
+    <button *ngIf="!todo.done" (click)="markAsDone(todo)">Concluir</button> |
+    <button *ngIf="todo.done" (click)="markAsUndone(todo)">Refazer</button> |
+    <button (click)="remove(todo)">X</button>
   </li>
 </ul>
