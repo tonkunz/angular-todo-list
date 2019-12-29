@@ -9,7 +9,7 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 })
 export class AppComponent {
   public title = "Minhas Tarefas";
-  public todos: Todo[] = [];
+  public todos: Todo[];
   public form: FormGroup;
 
   constructor(private fb: FormBuilder ) {
@@ -61,7 +61,12 @@ export class AppComponent {
   load() {
     const data = localStorage.getItem('todos');
 
-    this.todos = JSON.parse(data);
+    if (data) {
+      this.todos = JSON.parse(data);
+    } else {
+      this.todos = [];
+    }
+
   }
 
 }
