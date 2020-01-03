@@ -1,4 +1,4 @@
-<h1>{{ title }}</h1>
+<h1 class="title animated jackInTheBox">{{ title }}</h1>
 <ul>
   <p *ngIf="todos.length == 0">
     <small>Sem tarefas por hoje!</small>
@@ -6,22 +6,17 @@
   <li *ngFor="let todo of todos">{{ todo.title }} -
     <button *ngIf="!todo.done" (click)="markAsDone(todo)">Concluir</button> |
     <button *ngIf="todo.done" (click)="markAsUndone(todo)">Refazer</button> |
-    <button (click)="remove(todo)">X</button>
+    <button (click)="remove(todo)">Remover</button>
   </li>
 </ul>
 
 <form [formGroup]="form">
   <fieldset>
     <label>Nova Tarefa: </label>
-    <input
-      type="text"
-      placeholder="Título da tarefa"
-      maxlength="60"
-      formControlName="title"
-    >
+    <input type="text" placeholder="Título da tarefa" maxlength="60" formControlName="title">
     <small *ngIf="form.controls.title.invalid && !form.controls.title.pristine">
       Esta campo deve conter entre 3 e 60 caracteres
     </small>
-    <button [disabled]="form.invalid" (click)="add()">Salvar</button>
+    <button class="button" [disabled]="form.invalid" (click)="add()">Salvar</button>
   </fieldset>
 </form>
