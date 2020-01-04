@@ -8,11 +8,12 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms";
   styleUrls: ["./app.component.css"]
 })
 export class AppComponent {
+  public mode = "list";
   public title = "Minhas Tarefas";
   public todos: Todo[];
   public form: FormGroup;
 
-  constructor(private fb: FormBuilder ) {
+  constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
       title: ['', Validators.compose([
         Validators.minLength(5),
@@ -56,6 +57,7 @@ export class AppComponent {
     const data = JSON.stringify(this.todos);
 
     localStorage.setItem('todos', data);
+    this.mode = 'list';
   }
 
   load() {
@@ -67,6 +69,10 @@ export class AppComponent {
       this.todos = [];
     }
 
+  }
+
+  changeMode(mode: string) {
+    this.mode = mode;
   }
 
 }
